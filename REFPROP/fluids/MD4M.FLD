@@ -1,0 +1,140 @@
+MD4M                         !short name
+107-52-8                     !CAS number
+tetradecamethylhexasiloxane  !full name
+C14H42O5Si6                  !chemical formula
+MD4M                         !synonym
+458.99328          !molecular weight [g/mol]
+214.15             !triple point temperature [K]
+533.9              !normal boiling point [K]
+653.2              !critical temperature [K]
+ 877.0             !critical pressure [kPa]
+0.6060606          !critical density [mol/L]
+0.836              !acentric factor
+-1                 !dipole moment [Debye]
+NBP                !default reference state
+8.0                !version number
+other              !family
+
+
+! compiled by E.W. Lemmon, NIST Physical and Chemical Properties Division, Boulder, Colorado
+! 12-22-05 EWL, original version
+! 08-23-10 IDC, add ancillary density equations
+
+
+#EOS               !equation of state specification
+FEQ  Helmholtz equation of state for MD4M of Colonna et al. (2006).
+?LITERATURE REFERENCE \
+? Colonna, P., Nannan, N.R., Guardone, A., Lemmon, E.W.,
+? Multiparameter Equations of State for Selected Siloxanes,
+? Fluid Phase Equilibria, 244:193-211, 2006.
+?\
+!end of info section
+300.0              !lower temperature limit [K]
+673.0              !upper temperature limit [K]
+30000.0            !upper pressure limit [kPa]
+2.09               !maximum density [mol/L]
+CPP                                    !pointer to Cp0 model
+458.99328                              !molecular weight [g/mol]
+214.15                                 !triple point temperature [K]
+0.000000001                            !pressure at triple point [kPa]
+2.09                                   !density at triple point [mol/L]
+533.9                                  !normal boiling point temperature [K]
+0.836                                  !acentric factor
+653.2          877.47     0.62235694   !Tc [K], pc [kPa], rhoc [mol/L]
+653.2                     0.62235694   !reducing parameters [K, mol/L]
+8.314472                               !gas constant [J/mol-K]
+  12  4      0  0      0  0            !# terms, # coeff/term for:  "normal" terms, critical, spare
+ 1.18492421       0.25    1.0   0      !a(i),t(i),d(i),l(i)
+-1.87465636       1.125   1.0   0
+-0.65713510d-1    1.5     1.0   0
+-0.61812689       1.375   2.0   0
+ 0.19535804       0.25    3.0   0
+ 0.50678740d-3    0.875   7.0   0
+ 1.23544082       0.625   2.0   1
+ 0.49462708d-1    1.75    5.0   1
+-0.73685283       3.625   1.0   2
+-0.19991438       3.625   4.0   2
+-0.55118673d-1   14.5     3.0   3
+ 0.28325885d-1   12.0     4.0   3
+
+
+#AUX               !auxiliary model specification
+CPP  ideal gas heat capacity function
+?LITERATURE REFERENCE \
+? Colonna, P., Nannan, N.R., Guardone, A., Lemmon, E.W.,
+? Multiparameter Equations of State for Selected Siloxanes,
+? Fluid Phase Equilibria, 244:193-211, 2006.
+?\
+!end of info section
+50.0               !lower temperature limit [K]
+5000.0             !upper temperature limit [K]
+0.0                !upper pressure limit [kPa]
+0.0                !maximum density [mol/L]
+1.0          1.0                       !reducing parameters for T, Cp0
+  4  0    0  0    0  0  0              !Nterms:  polynomial, exponential, cosh, sinh
+-20.071         0.0
+ 2228.5e-3      1.0
+-1311.4e-6      2.0
+ 286.2e-9       3.0
+
+
+#PS         !vapor pressure equation
+PS5  vapor pressure equation of Lemmon (2010).
+?LITERATURE REFERENCE \
+?Lemmon, E.W., 2010.
+?\
+!end of info section
+300.0              !lower temperature limit [K]
+653.2              !upper temperature limit [K]
+0.0                !(dummy) upper pressure limit
+0.0                !(dummy) maximum density
+653.2   877.47     !reducing parameters
+4 0 0 0 0 0        !number of terms in equation
+-0.10532D+02   1.0
+ 0.33939D+01   1.5
+-0.89744D+01   2.75
+-0.56150D+01   5.1
+
+
+#DL         !saturated liquid density equation
+DL1  saturated liquid density equation of Cullimore (2010).
+?LITERATURE REFERENCE \
+?Cullimore, I.D., 2010.
+?\
+!end of info section
+300.0              !lower temperature limit [K]
+653.2              !upper temperature limit [K]
+0.0                !(dummy) upper pressure limit
+0.0                !(dummy) maximum density
+653.2   0.62235694 !reducing parameters
+5 0 0 0 0 0        !number of terms in equation
+ 0.10453D+01   0.235         !coefficients and exponents
+ 0.55476D+00   0.6
+ 0.44536D+01   0.95
+-0.76179D+01   1.35
+ 0.46237D+01   1.70
+
+
+#DV         !saturated vapor density equation
+DV3  saturated vapor density equation of Cullimore (2010).
+?LITERATURE REFERENCE \
+?Cullimore, I.D., 2010.
+?\
+!end of info section
+300.0              !lower temperature limit [K]
+653.2              !upper temperature limit [K]
+0.0                !(dummy) upper pressure limit
+0.0                !(dummy) maximum density
+653.2   0.62235694 !reducing parameters
+6 0 0 0 0 0        !number of terms in equation
+-0.10890D+01   0.231         !coefficients and exponents
+-0.84374D+01   0.8
+-0.35615D+02   2.9
+-0.73478D+03   7.7
+ 0.19915D+04   9.0
+-0.16317D+04  10.0
+
+
+@END
+c        1         2         3         4         5         6         7         8
+c2345678901234567890123456789012345678901234567890123456789012345678901234567890

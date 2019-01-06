@@ -1,0 +1,287 @@
+R1234ze                               !short name
+1645-83-6                             !CAS number
+trans-1,3,3,3-tetrafluoropropene      !full name
+CHF=CHCF3 (trans)                     !chemical formula {C3F4H2}
+HFO-1234ze(E)                         !synonym
+114.0415928        !molecular weight [g/mol]
+168.62             !triple point temperature [K]
+254.2              !normal boiling point [K]
+382.52             !critical temperature [K]
+3636.25            !critical pressure [kPa]
+4.29               !critical density [mol/L]
+0.313              !acentric factor
+-1.                !dipole moment [Debye]
+NBP                !default reference state
+8.0                !version number
+halocb             !family
+
+
+! compiled at NIST Physical and Chemical Properties Division, Boulder, Colorado
+! 11-30-09  MT, original version
+! 04-14-10  MT, update with new equation of state fitted to McLinden data
+! 06-22-10  MT, update with new equation fitted to Lago speed of sound data
+! 09-07-10 EWL, finalize fit
+! 09-07-10 MLH, added preliminary transport
+
+
+#EOS               !equation of state specification
+FEQ  Helmholtz equation of state for R1234ze of McLinden et al. (2010).
+?LITERATURE REFERENCE \
+?McLinden, M.O., Thol, M., and Lemmon, E.W.
+? "Thermodynamic Properties of trans-1,3,3,3-Tetrafluoropropene [R1234ze(E)]:
+? Measurements of Density and Vapor Pressure and a Comprehensive Equation of
+? State,"
+? International Refrigeration and Air Conditioning Conference at Purdue,
+? July 12-15, 2010.
+?
+?The uncertainty in density in the liquid phase of the equation of state is
+?0.1% from 240 K to 320 K and pressures up to 10 MPa. The uncertainty
+?increases outside of this region and in the vapor phase to 0.5%, and even
+?higher in the critical region.  In the gaseous region, the speed of sound can
+?be calculated with an uncertainty of 0.1%.  In the liquid phase, the
+?uncertainty increases to 0.5%.  The estimated uncertainty for heat capacities
+?is 5%.  The estimated uncertainty in vapor pressure is 0.1%.
+?\
+!end of info section
+168.62             !lower temperature limit [K]
+420.0              !upper temperature limit [K]
+20000.0            !upper pressure limit [kPa]
+13.20              !maximum density [mol/L]
+CPP                                    !pointer to Cp0 model
+114.0415928                            !molecular weight [g/mol]
+168.62                                 !triple point temperature [K]
+0.23                                   !pressure at triple point [kPa]
+13.19                                  !density at triple point [mol/L]
+254.2                                  !normal boiling point temperature [K]
+0.313                                  !acentric factor
+382.52        3636.25        4.29      !Tc [K], pc [kPa], rhoc [mol/L]
+382.52                       4.29      !reducing parameters [K, mol/L]
+8.314472                               !gas constant [J/mol-K]
+  10  4      5 12      0  0            !# terms, # coeff/term for:  "normal" terms, critical, spare
+  0.4434245D-01   1.0    4.   0.       !a(i),t(i),d(i),l(i)
+  0.1646369D+01   0.31   1.   0.
+ -0.2437488D+01   0.923  1.   0.
+ -0.5170560D+00   1.06   2.   0.
+  0.1815626D+00   0.44   3.   0.
+ -0.1210104D+01   2.08   1.   2.
+ -0.5944653D+00   2.32   3.   2.
+  0.7521992D+00   1.25   2.   1.
+ -0.6747216D+00   2.0    2.   2.
+ -0.2448183D-01   1.0    7.   1.
+  0.1379434D+01   0.93   1.   2. 2.   -1.0     -1.64  1.13  0.711   0. 0. 0.
+ -0.4697024D+00   1.93   1.   2. 2.   -1.4     -1.57  0.61  0.856   0. 0. 0.
+ -0.2036158D+00   2.69   3.   2. 2.   -1.134   -1.49  0.65  0.753   0. 0. 0.
+ -0.8407447D-01   1.0    3.   2. 2.   -7.68  -257.0   1.13  0.772   0. 0. 0.
+  0.5109529D-03   2.0    2.   2. 2.  -24.0    -45.0   1.34  1.88    0. 0. 0.
+
+
+#AUX               !auxiliary model specification
+CPP  ideal gas heat capacity function
+?LITERATURE REFERENCE \
+?\
+!end of info section
+1.                 !lower temperature limit [K]
+5000.              !upper temperature limit [K]
+0.0                !upper pressure limit [kPa]
+0.0                !maximum density [mol/L]
+1.0          8.314472                  !reducing parameters for T, Cp0
+  1  3    0  0    0  0  0              !Nterms:  polynomial, exponential, cosh, sinh
+ 6.259      0.0
+ 7.303    691.0
+ 8.597   1705.0
+ 2.333   4216.0
+
+
+#TCX               !thermal conductivity model specification
+TC1  pure fluid thermal conductivity model of Perkins, R.A. and Huber, M.L. (2010).
+?LITERATURE REFERENCE \
+? Perkins, R.A. and Huber, M.L., unpublished work, 2010.
+?\
+? The estimated uncertainty of the correlation is 3%, except for the dilute gas and points
+? approaching critical where the uncertainty rises to 5%, larger in the critical region.
+?
+?DATA SOURCES FOR THERMAL CONDUCTIVITY\
+?The parameters for thermal conductivity were based on the data of:\
+?\
+?Perkins, R.A. and Huber, M.L. (2010). Unpublished work. sept 2 fit
+?\
+!end of info section
+168.62             !lower temperature limit [K]
+420.               !upper temperature limit [K]
+20000.             !upper pressure limit [kPa]
+13.20              !maximum density [mol/L]
+3   0              !# terms for dilute gas function:  numerator, denominator
+382.52     1.0     !reducing parameters for T, tcx
+ 0.28514500E-02     .00E+00
+-0.43909100E-02     .10E+01
+ 0.23261600E-01     .20E+01
+10  0                     !# terms for background gas function:  numerator, denominator
+382.52    4.29     1.0    !reducing par for T, rho, tcx
+-0.10750600E-02     .00E+00     .10E+01     .00E+00
+-0.11560800E-01     .00E+00     .20E+01     .00E+00
+ 0.76230400E-02     .00E+00     .30E+01     .00E+00
+ 0.00000000E+00     .00E+00     .40E+01     .00E+00
+ 0.00000000E+00     .00E+00     .50E+01     .00E+00
+ 0.00000000E+00     .10E+01     .10E+01     .00E+00
+ 0.10181100E-01     .10E+01     .20E+01     .00E+00
+-0.22450100E-02     .10E+01     .30E+01     .00E+00
+ 0.00000000E+00     .10E+01     .40E+01     .00E+00
+ 0.00000000E+00     .10E+01     .50E+01     .00E+00
+TK3                !pointer to critical enhancement auxiliary function
+
+
+@TRN               !transport model specification
+ECS  Extended Corresponding States model (R134a reference).
+?LITERATURE REFERENCES \
+?
+? *** ESTIMATION METHOD ONLY --- NOT STANDARD REFERENCE QUALITY---
+?     ***Limited or no experimental data were available for analysis***
+?
+?
+? Estimated uncertainty for liquid viscosity is 3 % based on comparisons with
+? Grebenkov, A.J., Hulse, R., Pham, H. and Singh, R., "Physical Properties and
+? Equation of State for trans-1,3,3,3-tetrafluoropropene"
+? paper presented at 3rd IIR Conference on Thermophysical Properties and
+? Transfer Processes of Refrigerants, Boulder CO June 2009
+?
+?
+? No data for thermal conductivity was found. Based on family comparisons,
+? the estimated uncertainty for ECS estimation model is 20%
+?
+? Values estimated following the method described in the following reference:
+? Huber, M.L., Laesecke, A., and Perkins, R.A.,
+? "Model for the Viscosity and Thermal Conductivity of Refrigerants,
+? Including a New Correlation for the Viscosity of R134a",
+? Ind. Eng. Chem. Res., 42:3163-3178, 2003.
+?\
+?the Lennard-Jones parameters are estimated with the method of Chung.
+?\
+!end of info section
+168.62             !lower temperature limit [K]
+420.               !upper temperature limit [K]
+20000.             !upper pressure limit [kPa]
+13.20              !maximum density [mol/L]
+FEQ R134a.fld
+VS1                !model for reference fluid viscosity
+TC1                !model for reference fluid thermal conductivity
+1                  !Lennard-Jones flag (0 or 1) (0 => use estimates)
+0.5017             !Lennard-Jones coefficient sigma [nm]
+292.11             !Lennard-Jones coefficient epsilon/kappa [K]
+1  0  0                       !number of terms in f_int term in Eucken correlation, spare1, spare2
+ 1.32d-3        0.0  0.0  0.0 !coeff, power of T, spare 1, spare 2
+2  0  0                       !number of terms in psi (visc shape factor): poly,spare1,spare2
+ 1.02599432     0.0  0.0  0.0 !coeff, power of Tr, power of Dr, spare
+-1.01642107D-02 0.0  1.0  0.0 !coeff, power of Tr, power of Dr, spare
+1  0  0                       !number of terms in chi (t.c. shape factor): poly,spare1,spare2
+ 1.0            0.0  0.0  0.0 !coeff, power of Tr, power of Dr, spare
+TK3                           !pointer to critical enhancement auxiliary function
+
+
+#AUX               !thermal conductivity critical enhancement model
+TK3  simplified thermal conductivity critical enhancement of Olchowy and Sengers
+?LITERATURE REFERENCE \
+?Olchowy, G.A. and Sengers, J.V.,
+? "A simplified representation for the thermal conductivity of fluids in the
+? critical region,"
+? Int. J. Thermophysics, 10:417-426, 1989.
+?\
+?as applied to CO2 by:
+?\
+?Vesovic, V., Wakeham, W.A., Olchowy, G.A., Sengers, J.V., Watson, J.T.R.
+? and Millat, J.,
+? "The transport properties of carbon dioxide,"
+? J. Phys. Chem. Ref. Data, 19:763-808, 1990.
+?\
+!end of info section
+168.62             !lower temperature limit [K]
+420.               !upper temperature limit [K]
+20000.             !upper pressure limit [kPa]
+13.20              !maximum density [mol/L]
+9  0  0  0         !# terms:  CO2-terms, spare, spare, spare
+1.0     1.0     1.0      !reducing par for T, rho, tcx (mW/m-K)
+0.630d0            !gnu (universal exponent)
+1.239d0            !gamma (universal exponent)
+1.03d0             !R0 (universal amplitude)
+0.063d0            !z (universal exponent--not used for t.c., only viscosity)
+1.00d0             !c (constant in viscosity eqn = 1/[2 - (alpha + gamma)/(2*nu)], but often set to 1)
+0.194d-9           !xi0 (amplitude) [m]
+0.0496             !gam0 (amplitude) [-]
+5.285d-10          !qd_inverse (modified effective cutoff parameter) [m] value for R134a
+573.78d+00         !tref (reference temperature)=1.5*Tc [K]
+
+
+#STN        !surface tension specification
+ST1  surface tension model of Tanaka et al. (2010).
+?LITERATURE REFERENCE \
+?Tanaka, K., Takahashi, K., Higashi, Y.
+? "Measurements of the Surface Tension for trans-1,3,3,3-tetrafluoropropene
+? (HFO-1234ze(E)),"
+? to be published, 2010.
+?\
+!end of info section
+168.62             !lower temperature limit [K]
+1000.              !upper temperature limit [K]
+0.0                !(dummy) upper pressure limit
+0.0                !(dummy) maximum density
+1                           !number of terms in surface tension model
+382.51                      !critical temperature used in fit (dummy)
+ 0.05681     1.230          !sigma0 and n
+
+
+#PS         !vapor pressure equation
+PS5  vapor pressure equation of Lemmon (2010).
+?LITERATURE REFERENCE \
+?Lemmon, E.W., 2010.
+?\
+!end of info section
+168.62             !lower temperature limit [K]
+382.52             !upper temperature limit [K]
+0.0                !(dummy) upper pressure limit
+0.0                !(dummy) maximum density
+382.52  3636.25    !reducing parameters
+4 0 0 0 0 0        !number of terms in equation
+-0.76813D+01   1.0
+ 0.31759D+01   1.5
+-0.26397D+01   1.8
+-0.35234D+01   3.9
+
+
+#DL         !saturated liquid density equation
+DL1  saturated liquid density equation of Lemmon (2010).
+?LITERATURE REFERENCE \
+?Lemmon, E.W., 2010.
+?\
+!end of info section
+168.62             !lower temperature limit [K]
+382.52             !upper temperature limit [K]
+0.0                !(dummy) upper pressure limit
+0.0                !(dummy) maximum density
+382.52  4.29       !reducing parameters
+4 0 0 0 0 0        !number of terms in equation
+ 0.16130D+01  0.31 !coefficients and exponents
+ 0.46976D+01  0.94
+-0.68759D+01  1.20
+ 0.34227D+01  1.50
+
+
+#DV         !saturated vapor density equation
+DV3  saturated vapor density equation of Lemmon (2010).
+?LITERATURE REFERENCE \
+?Lemmon, E.W., 2010.
+?\
+!end of info section
+168.62             !lower temperature limit [K]
+382.52             !upper temperature limit [K]
+0.0                !(dummy) upper pressure limit
+0.0                !(dummy) maximum density
+382.52  4.29       !reducing parameters
+4 0 0 0 0 0        !number of terms in equation
+-0.24897D+01  0.36 !coefficients and exponents
+-0.63324D+01  1.07
+-0.20262D+02  3.00
+-0.62612D+02  6.80
+
+
+@END
+c        1         2         3         4         5         6         7         8
+c2345678901234567890123456789012345678901234567890123456789012345678901234567890
